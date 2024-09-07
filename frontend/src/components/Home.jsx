@@ -17,6 +17,7 @@ import {
   FaPlus,
 } from "react-icons/fa";
 import { EventCard } from "./Eventcard"; // Assuming EventCard is the correct import
+import logo from "../../public/logos/logo.jpg";
 
 const DashboardPage = () => {
   const [events, setEvents] = useState([]);
@@ -84,22 +85,15 @@ const Admind = () => {
         <header className="bg-white shadow flex items-center justify-between p-4 w-full">
           <div className="flex items-center space-x-2">
             <FaBars className="cursor-pointer" onClick={toggleSidebar} />
-            <img src="SEAM.png" alt="Logo" className="w-16 h-16" />
-            <div className="text-2xl font-bold">
+            <img src={logo} alt="Logo" className="w-12 h-12 sm:w-16 sm:h-16" />
+            <div className="text-xl sm:text-2xl font-bold">
               Student Event Attendance Management
             </div>
           </div>
-          <div className="flex items-center space-x-2">
-            <input
-              type="text"
-              placeholder="Search"
-              className="bg-gray-200 rounded-full px-4 py-2 outline-none w-96"
-            />
-            <button className="flex items-center space-x-2 text-red-600">
-              <FaSignOutAlt />
-              <span>Logout</span>
-            </button>
-          </div>
+          <button className="flex items-center space-x-2 text-red-600">
+            <FaSignOutAlt />
+            <span>Logout</span>
+          </button>
         </header>
 
         <div className="flex flex-1">
@@ -107,7 +101,7 @@ const Admind = () => {
           <aside
             className={`bg-gray-100 p-4 space-y-6 transition-all duration-300 ${
               isSidebarOpen ? "block" : "hidden"
-            } w-64 flex-shrink-0`}
+            } w-full sm:w-64 flex-shrink-0`}
           >
             <nav>
               <ul className="space-y-4">
@@ -148,7 +142,7 @@ const Admind = () => {
                     <span>About SEAM</span>
                   </Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link
                     to="/sample"
                     className="flex items-center space-x-2 hover:bg-gray-200 rounded-lg p-2"
@@ -156,8 +150,8 @@ const Admind = () => {
                     <FaBook />
                     <span>Sample Page</span>
                   </Link>
-                </li>
-                <li>
+                </li> */}
+                {/* <li>
                   <Link
                     to="/documentation"
                     className="flex items-center space-x-2 hover:bg-gray-200 rounded-lg p-2"
@@ -165,7 +159,7 @@ const Admind = () => {
                     <FaBook />
                     <span>Documentation</span>
                   </Link>
-                </li>
+                </li> */}
                 {/* Create Event Button */}
                 <li>
                   <Link
