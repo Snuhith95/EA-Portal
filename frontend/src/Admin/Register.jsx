@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import seam from "/seam.png";
+import seam from "/flogos/logo.jpg";
 
 const SignupForm = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
