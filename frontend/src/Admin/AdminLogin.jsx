@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import seam from "/seam.png";
+import seam from "/flogos/logo.jpg";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
