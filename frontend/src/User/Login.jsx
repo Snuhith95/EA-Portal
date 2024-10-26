@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import seam from "/flogos/logo.jpg";
 
 const Login = () => {
   const [email, setEmail] = useState("");
