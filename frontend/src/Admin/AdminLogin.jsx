@@ -15,17 +15,13 @@ const Login = () => {
     console.log("Password:", password);
 
     try {
-      const base_url=import.meta.env.VITE_SERVER_URL;
-      const response = await fetch(
-        `${base_url}/adminLogin`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ club, password }),
-        }
-      );
+      const response = await fetch("http://localhost:8080/adminLogin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ club, password }),
+      });
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -49,7 +45,11 @@ const Login = () => {
     <div className="min-h-screen flex items-center justify-center bg-blue-100 p-4 sm:p-8">
       <div className="bg-white p-6 sm:p-8 rounded-lg shadow-lg max-w-sm sm:max-w-md w-full">
         <div className="flex flex-col items-center mb-6">
-          <img src={seam} alt="Seam" className="h-12 sm:h-14 mb-4" />
+          <img
+            src="/flogos/logo.jpg"
+            alt="Seam"
+            className="h-12 sm:h-14 mb-4"
+          />
           <h2 className="text-xl sm:text-2xl font-semibold text-purple-600">
             Login
           </h2>

@@ -1,7 +1,6 @@
 import { useState } from "react";
 // import "./App.css";
 import Hero from "./Admin/Hero";
-import About from "./Admin/About";
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Signup from "./Admin/Register"; // Assuming SignupForm is the Register component
@@ -15,6 +14,7 @@ import ScanAttendancePage from "./Admin/ScanAttendance";
 import MainPage from "./MainPage";
 import AdminLogin from "./Admin/AdminLogin";
 import EventForm from "./Admin/EventRegistration";
+import AttendanceAnalytics from "./Admin/Analytics_dashboard";
 
 const Admin = () => {
   return (
@@ -30,9 +30,12 @@ const Admin = () => {
           path="/scan-attendance/:eventId"
           element={<ScanAttendancePage />}
         />
+        <Route
+          path="/:clubName/analytics/:eventId"
+          element={<AttendanceAnalytics />}
+        />
         <Route path="/adminet/:clubname" element={<AdminEvents />} />
         <Route path="/hero" element={<Hero />} />
-        <Route path="/about" element={<About />} />
         <Route path="/:clubname/*" element={<Admind />} />
       </Routes>
     </div>

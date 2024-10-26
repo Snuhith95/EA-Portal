@@ -19,7 +19,7 @@ public class UserController {
 
     @RequestMapping("/")
     public String home(){
-        return "Server Bitches";
+        return "Server";
     }
 
     @PostMapping("/post")

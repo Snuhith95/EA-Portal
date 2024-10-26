@@ -29,7 +29,7 @@ const ScanAttendancePage = () => {
 
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_SERVER_URL}/${eventId}/presentees`,
+          `http://localhost:8080/${eventId}/presentees`,
           {
             method: "PUT",
             headers: {

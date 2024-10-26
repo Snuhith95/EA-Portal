@@ -13,7 +13,7 @@ const AdminEvents = () => {
     const fetchEvents = async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_SERVER_URL}/pastEventsByClub/${clubname}`
+          `http://localhost:8080/pastEventsByClub/${clubname}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch events");

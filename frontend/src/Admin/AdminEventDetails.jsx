@@ -1,6 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import Slider from "react-slick";
+import { Link } from "react-router-dom";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { FaFileAlt, FaDownload } from "react-icons/fa";
@@ -41,7 +42,7 @@ const AdminEventDetails = () => {
     // Your slider settings here
   };
 
-  const baseUrl = `${import.meta.env.VITE_SERVER_URL}`; // Base URL of your backend
+  const baseUrl = "http://localhost:8080"; // Base URL of your backend
   const downloadDocumentUrl = `${baseUrl}/download/${eventId}`;
 
   const handleDownload = async () => {
@@ -134,6 +135,17 @@ const AdminEventDetails = () => {
               <FaDownload className="mr-2 text-xl" />
               Download Attendance Document
             </button>
+
+            <div className="mt-6">
+              <Link
+                to={{
+                  pathname: `/admin/${clubName}/analytics/${eventId}`,
+                }}
+                className="text-blue-600 hover:text-blue-800 transition text-lg"
+              >
+                View Analytics Dashboard
+              </Link>
+            </div>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import DP from "/flogos/Akhil Profile.png"
+import DP from "/blogos/akhil.png"
 
 const SamplePage = () => {
     const [profileData, setProfileData] = useState({
