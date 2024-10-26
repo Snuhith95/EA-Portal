@@ -1,11 +1,9 @@
 import { useState } from "react";
 // import "./App.css";
 import Hero from "./Admin/Hero";
-import About from "./Admin/About";
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Signup from "./Admin/Register"; // Assuming SignupForm is the Register component
-import Login from "./User/Login";
 import Eventcreation from "./Admin/EventRegistration"; // Create or import your Login component
 import Admind from "./Admin/Home";
 import EventDetailPage from "./Admin/EventDetailPage";
@@ -37,7 +35,6 @@ const Admin = () => {
         />
         <Route path="/adminet/:clubname" element={<AdminEvents />} />
         <Route path="/hero" element={<Hero />} />
-        <Route path="/about" element={<About />} />
         <Route path="/:clubname/*" element={<Admind />} />
       </Routes>
     </div>

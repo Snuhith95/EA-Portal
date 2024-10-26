@@ -1,5 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Route, Routes, Link, useParams, Router } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Link,
+  useParams,
+} from "react-router-dom";
 import {
   FaTachometerAlt,
   FaPenNib,
@@ -87,7 +93,7 @@ const Admind = () => {
               onClick={toggleSidebar}
             />
             <img
-              src="/flogos/logo.jpg"
+              src="SEAM.png"
               alt="Logo"
               className="w-12 h-12 sm:w-16 sm:h-16"
             />
@@ -112,7 +118,7 @@ const Admind = () => {
               <ul className="space-y-4">
                 <li>
                   <Link
-                    to=""
+                    to="/"
                     className="flex items-center space-x-2 text-purple-700 font-bold hover:bg-purple-200 rounded-lg p-2"
                   >
                     <FaTachometerAlt />
@@ -131,7 +137,7 @@ const Admind = () => {
                 </li>
                 <li>
                   <Link
-                    to="Allclubs"
+                    to="/user/Allclubs"
                     className="flex items-center space-x-2 hover:bg-gray-200 rounded-lg p-2"
                   >
                     <FaPalette />
@@ -140,7 +146,7 @@ const Admind = () => {
                 </li>
                 <li>
                   <Link
-                    to="attendance"
+                    to="/attendance"
                     className="flex items-center space-x-2 hover:bg-gray-200 rounded-lg p-2"
                   >
                     <FaIcons />
@@ -149,7 +155,7 @@ const Admind = () => {
                 </li>
                 <li>
                   <Link
-                    to="samplepage"
+                    to="/samplepage"
                     className="flex items-center space-x-2 hover:bg-gray-200 rounded-lg p-2"
                   >
                     <FaBook />
@@ -158,7 +164,7 @@ const Admind = () => {
                 </li>
                 <li>
                   <Link
-                    to="documentation"
+                    to="/documentation"
                     className="flex items-center space-x-2 hover:bg-gray-200 rounded-lg p-2"
                   >
                     <FaBook />
@@ -173,7 +179,7 @@ const Admind = () => {
           <div className="flex-1">
             <main className="flex-1 p-4 space-y-4">
               <Routes>
-                <Route path="/user" element={<Se />} />
+                <Route path="/" element={<Se />} />
                 <Route path="/myevent" element={<UserEvent />} />
                 <Route path="/Allclubs" element={<Allclubs />} />
                 <Route path="/attendance" element={<Userattendancepage />} />
