@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import seam from "/seam.png";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -8,32 +7,33 @@ const Login = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Log the email and password to verify the inputs
-    console.log("Email:", email);
-    console.log("Password:", password);
-
     try {
-      const response = await fetch(
-        "https://ea-portal-bv08.onrender.com/login",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email, password }),
-        }
-      );
+      const response = await fetch("http://localhost:8080/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
 
-      const data = await response.json();
-      console.log("Success:", data);
-      // Handle success response here
+      const data = await response.text(); // Get response as a string
+      console.log("Response:", data);
+
+      if (data.startsWith("Yes")) {
+        const admissionNo = data.split(" ")[1];
+        localStorage.setItem("admissionNo", admissionNo);
+        alert("Login successful!");
+        // Redirect or perform additional actions here
+      } else if (data === "Authfailure") {
+        alert("Wrong credentials. Please try again.");
+      }
     } catch (error) {
       console.error("Error:", error);
-      // Handle error response here
+      alert("An error occurred. Please try again later.");
     }
   };
 
@@ -41,7 +41,11 @@ const Login = () => {
     <div className="min-h-screen flex items-center justify-center bg-blue-100 p-4 sm:p-8">
       <div className="bg-white p-6 sm:p-8 rounded-lg shadow-lg max-w-sm sm:max-w-md w-full">
         <div className="flex flex-col items-center mb-6">
-          <img src={seam} alt="Seam" className="h-12 sm:h-14 mb-4" />
+          <img
+            src="/flogos/logo.jpg"
+            alt="Seam"
+            className="h-12 sm:h-14 mb-4"
+          />
           <h2 className="text-xl sm:text-2xl font-semibold text-purple-600">
             Login
           </h2>

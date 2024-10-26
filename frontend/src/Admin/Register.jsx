@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import seam from "/seam.png";
 
 const SignupForm = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -29,7 +28,7 @@ const SignupForm = () => {
     console.log("Form Data:", formData);
 
     try {
-      const response = await fetch("https://ea-portal-bv08.onrender.com/post", {
+      const response = await fetch("http://localhost:8080/post", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -52,7 +51,7 @@ const SignupForm = () => {
     <div className="min-h-screen flex items-center justify-center  px-4 py-8">
       <div className="bg-white p-6 rounded-xl shadow-lg w-full max-w-lg">
         <div className="flex flex-col items-center mb-8">
-          <img src={seam} alt="Seam" className="h-14 mb-4" />
+          <img src="/flogos/logo.jpg" alt="Seam" className="h-14 mb-4" />
           <h2 className="text-2xl font-bold text-purple-700">Sign Up</h2>
         </div>
         <p className="text-center text-gray-600 mb-6">

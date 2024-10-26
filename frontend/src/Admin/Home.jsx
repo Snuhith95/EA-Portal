@@ -30,7 +30,7 @@ const DashboardPage = () => {
     const fetchEvents = async () => {
       try {
         const response = await fetch(
-          `https://ea-portal-bv08.onrender.com/presentEventsByClub/${clubname}`
+          `http://localhost:8080/presentEventsByClub/${clubname}`
         );
         console.log(response);
         if (!response.ok) {

@@ -15,6 +15,7 @@ import ScanAttendancePage from "./Admin/ScanAttendance";
 import MainPage from "./MainPage";
 import AdminLogin from "./Admin/AdminLogin";
 import EventForm from "./Admin/EventRegistration";
+import AttendanceAnalytics from "./Admin/Analytics_dashboard";
 
 const Admin = () => {
   return (
@@ -29,6 +30,10 @@ const Admin = () => {
         <Route
           path="/scan-attendance/:eventId"
           element={<ScanAttendancePage />}
+        />
+        <Route
+          path="/:clubName/analytics/:eventId"
+          element={<AttendanceAnalytics />}
         />
         <Route path="/adminet/:clubname" element={<AdminEvents />} />
         <Route path="/hero" element={<Hero />} />

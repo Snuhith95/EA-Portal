@@ -47,16 +47,13 @@ const EventForm = () => {
     };
 
     try {
-      const response = await fetch(
-        "https://ea-portal-bv08.onrender.com/create",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(eventData),
-        }
-      );
+      const response = await fetch("http://localhost:8080/create", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(eventData),
+      });
 
       if (response.ok) {
         const result = await response.json();
