@@ -13,7 +13,7 @@ const EventDetailPage = () => {
     const fetchEvent = async () => {
       try {
         const response = await fetch(
-          `https://ea-portal-bv08.onrender.com/${eventId}`
+          `${import.meta.env.VITE_SERVER_URL}/${eventId}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch event");

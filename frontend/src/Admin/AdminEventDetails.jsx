@@ -41,7 +41,7 @@ const AdminEventDetails = () => {
     // Your slider settings here
   };
 
-  const baseUrl = "https://ea-portal-bv08.onrender.com"; // Base URL of your backend
+  const baseUrl = `${import.meta.env.VITE_SERVER_URL}`; // Base URL of your backend
   const downloadDocumentUrl = `${baseUrl}/download/${eventId}`;
 
   const handleDownload = async () => {

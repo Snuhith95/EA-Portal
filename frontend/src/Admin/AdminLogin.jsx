@@ -15,8 +15,9 @@ const Login = () => {
     console.log("Password:", password);
 
     try {
+      const base_url=import.meta.env.VITE_SERVER_URL;
       const response = await fetch(
-        "https://ea-portal-bv08.onrender.com/adminLogin",
+        `${base_url}/adminLogin`,
         {
           method: "POST",
           headers: {

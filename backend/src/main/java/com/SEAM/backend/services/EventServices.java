@@ -1,7 +1,9 @@
 package com.SEAM.backend.services;
 
 import com.SEAM.backend.models.Event;
+import com.SEAM.backend.models.UserModel;
 import com.SEAM.backend.repo.EventRepo;
+import com.SEAM.backend.repo.UserRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,12 +12,16 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
 public class EventServices {
     @Autowired
     private EventRepo repo;
+    @Autowired
+    private UserRepo up;
+
     public Event createEvent(Event event){
         return repo.save(event);
     }
@@ -33,9 +39,9 @@ public class EventServices {
 
     private final ZoneId ZONE_ID = ZoneId.of("Asia/Kolkata");
     private final LocalDate currentDate = LocalDate.now(ZONE_ID);
-    
 
-    
+
+
     public List<Event> getPastEvents() {
         List<Event> allEvents = repo.findAll();
         List<Event> pastEvents = new ArrayList<Event>();
@@ -123,11 +129,22 @@ public class EventServices {
         return presentEvents;
     }
 
+    public boolean register(Map<String,String> map){
+        String admNo = map.get("admNo");
+        String eventId = map.get("eventId");
 
-
-
-
-
-
+        Optional<UserModel> u = up.findById(admNo);
+        Optional<Event> e = repo.findById(eventId);
+        if(e.isPresent() && u.isPresent()){
+            e.get().registered.add(admNo);
+            u.get().attended.add(eventId);
+            return true;
+        }
+        return false;
     }
 
+
+
+
+
+}

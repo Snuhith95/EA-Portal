@@ -29,7 +29,7 @@ const ScanAttendancePage = () => {
 
       try {
         const response = await fetch(
-          `https://ea-portal-bv08.onrender.com/${eventId}/presentees`,
+          `${import.meta.env.VITE_SERVER_URL}/${eventId}/presentees`,
           {
             method: "PUT",
             headers: {

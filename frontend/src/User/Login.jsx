@@ -14,7 +14,7 @@ const Login = () => {
 
     try {
       const response = await fetch(
-        "https://ea-portal-bv08.onrender.com/login",
+        `${import.meta.env.VITE_SERVER_URL}/login`,
         {
           method: "POST",
           headers: {

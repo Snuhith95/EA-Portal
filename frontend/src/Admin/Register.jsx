@@ -29,7 +29,7 @@ const SignupForm = () => {
     console.log("Form Data:", formData);
 
     try {
-      const response = await fetch("https://ea-portal-bv08.onrender.com/post", {
+      const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/post`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

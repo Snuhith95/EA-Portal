@@ -14,23 +14,20 @@ public class UserServices {
     public UserRepo repo;
 
     public UserModel putData(UserModel user) {
-
         return repo.save(user);
-
     }
 
     public String searchUser(UserBody user) {
         try {
             UserModel u = repo.findByEmail(user.email).getFirst();
             if (Objects.equals(u.password, user.password)){
-                return "Auth";
+                return "Yes "+u.admission_no;
             }
             else
                 return "AuthFuck";
         } catch (Exception e) {
-            return "NoUser";
+            return "No User";
         }
     }
 
-    }
-
+}
