@@ -24,5 +24,6 @@ public class Event {
     public LocalTime startTime;
     public LocalTime endTime;
     public String eventLocation;
+    public List<String> registered = new ArrayList<String>();
     public List<String> eventPresentees= new ArrayList<String>();
 }
