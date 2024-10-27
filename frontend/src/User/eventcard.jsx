@@ -45,13 +45,22 @@ const Card = ({
     }
   };
 
+  const clubLogos = {
+    PlacementOffice: "/flogos/PlacementLogo.png",
+    Satarc: "/flogos/SATARClogo.jpg",
+    // Add more mappings here for each club
+  };
+
+  // Select the logo based on club name, or a default logo if not found
+  const clubLogo = clubLogos[clubName];
+
   return (
     <div className="w-3/5 mx-auto bg-white shadow-lg rounded-lg overflow-hidden border border-gray-200 mt-5 p-4 hover:scale-105 transition duration-500">
       <div className="flex">
         {/* Logo on the left occupying 1/4 of the card */}
         <div className="w-1/4 flex justify-center items-center">
           <img
-            src="/flogos/KreedaLogo.jpg" // replace with your dynamic logo path if available
+            src={clubLogo} // Use the dynamically selected logo/ replace with your dynamic logo path if available
             alt="Club Logo"
             className="h-full w-full object-contain"
           />

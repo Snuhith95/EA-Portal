@@ -18,6 +18,9 @@ import {
 } from "react-icons/fa";
 // Importing Card component for event cards
 import Card from "./eventcard";
+import UserEvent from "./userevents";
+import Allclubs from "./allclubs";
+import Userattendancepage from "./userattendance";
 // Main Admind Component
 const Admind = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -57,7 +60,7 @@ const Admind = () => {
         <div className="flex items-center space-x-2">
           <FaBars className="cursor-pointer md:w-130" onClick={toggleSidebar} />
           <img
-            src="SEAM.png"
+            src="/flogos/logo.jpg"
             alt="Logo"
             className="w-12 h-12 sm:w-16 sm:h-16"
           />
@@ -82,7 +85,7 @@ const Admind = () => {
             <ul className="space-y-4">
               <li>
                 <Link
-                  to="/"
+                  to="/user/home"
                   className="flex items-center space-x-2 text-purple-700 font-bold hover:bg-purple-200 rounded-lg p-2"
                 >
                   <FaTachometerAlt />
@@ -110,11 +113,11 @@ const Admind = () => {
               </li>
               <li>
                 <Link
-                  to="/samplepage"
+                  to="/user/attendance"
                   className="flex items-center space-x-2 hover:bg-gray-200 rounded-lg p-2"
                 >
                   <FaBook />
-                  <span>Sample Page</span>
+                  <span>Attendance</span>
                 </Link>
               </li>
               <li>
@@ -130,19 +133,35 @@ const Admind = () => {
           </nav>
         </aside>
         {/* Main Content */}
-        <div>
-          {futureEvents.map((event) => (
-            <Card
-              key={event.id}
-              eventName={event.eventName}
-              clubName={event.clubName}
-              eventDate={event.eventDate}
-              startTime={event.startTime}
-              endTime={event.endTime}
-              eventLocation={event.eventLocation}
-              eventid={event.eventId}
-            />
-          ))}
+        <div className="flex-1">
+          <main className="flex-1 p-4 space-y-4">
+            <Routes>
+              <Route
+                path="/home"
+                element={
+                  <div>
+                    {futureEvents.map((event) => (
+                      <Card
+                        key={event.id}
+                        eventName={event.eventName}
+                        clubName={event.clubName}
+                        eventDate={event.eventDate}
+                        startTime={event.startTime}
+                        endTime={event.endTime}
+                        eventLocation={event.eventLocation}
+                        eventid={event.eventId}
+                      />
+                    ))}
+                  </div>
+                }
+              />
+              <Route path="/myevent" element={<UserEvent />} />
+              <Route path="/Allclubs" element={<Allclubs />} />
+              <Route path="/attendance" element={<Userattendancepage />} />
+              {/* <Route path="/samplepage" element={<SamplePage />} /> */}
+              {/* Add other routes here */}
+            </Routes>
+          </main>
         </div>
       </div>
     </div>
