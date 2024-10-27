@@ -129,19 +129,41 @@ public class EventServices {
         return presentEvents;
     }
 
-    public boolean register(Map<String,String> map){
-        String admNo = map.get("admNo");
-        String eventId = map.get("eventId");
+    public boolean register(Map<String, String> map) {
+    String admNo = map.get("admissionNo");
+    String eventId = map.get("eventId");
 
-        Optional<UserModel> u = up.findById(admNo);
-        Optional<Event> e = repo.findById(eventId);
-        if(e.isPresent() && u.isPresent()){
-            e.get().registered.add(admNo);
-            u.get().attended.add(eventId);
-            return true;
+    // Fetch the user and event based on the provided IDs
+    Optional<UserModel> userOptional = up.findById(admNo);
+    Optional<Event> eventOptional = repo.findById(eventId);
+
+    // Check if both the user and the event exist
+    if (eventOptional.isPresent() && userOptional.isPresent()) {
+        Event event = eventOptional.get();
+        UserModel user = userOptional.get();
+
+        // Add the admission number to the event's registered list
+        if (event.getRegistered() == null) {
+            event.setRegistered(new ArrayList<>()); // Ensure it's initialized
         }
-        return false;
+        event.getRegistered().add(admNo);
+
+        // Add the event ID to the user's attended list
+        if (user.getAttended() == null) {
+            user.setAttended(new ArrayList<>()); // Ensure it's initialized
+        }
+        user.getAttended().add(eventId);
+
+        // Save both the updated user and event
+        repo.save(event); // Save the event
+        up.save(user); // Save the user
+
+        return true; // Registration successful
     }
+    
+    return false; // Registration failed
+}
+
 
 
 

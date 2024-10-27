@@ -1,7 +1,9 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Exp from "./User/Exp";
+import { Admind } from "./User/Exp";
 import Login from "./User/Login";
 import Allclubs from "./User/allclubs";
+import UserEvents from "./User/userevents";
+import Signup from "./User/Register";
 
 function App() {
   console.log("user jsx");
@@ -9,8 +11,10 @@ function App() {
     <>
       <Routes>
         <Route path="/login" element={<Login />} />
-        <Route path="/override/" element={<Exp />} />
+        <Route path="/home/" element={<Admind />} />
         <Route path="/Allclubs" element={<Allclubs />} />
+        <Route path="/myevent" element={<UserEvents />} />
+        <Route path="/register" element={<Signup />} />
       </Routes>
     </>
   );

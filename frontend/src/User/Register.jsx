@@ -1,88 +1,202 @@
-import { useState } from 'react';
+import React, { useState } from "react";
 
-const Register = () => {
+const SignupForm = () => {
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-    confirmPassword: '',
+    username: "",
+    email: "",
+    password: "",
+    admission_no: "",
+    roll_no: "",
+    branch: "",
+    semester: "",
+    attended: [],
   });
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
   };
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add your form submission logic here, e.g., API call
-    console.log('Form submitted', formData);
+    console.log("Form Data:", formData);
+
+    try {
+      const response = await fetch("http://localhost:8080/post", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log("Success:", result);
+      } else {
+        console.error("Error:", response.statusText);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold text-center text-gray-900">Register</h2>
-        <form className="space-y-4" onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
+    <div className="min-h-screen flex items-center justify-center  px-4 py-8">
+      <div className="bg-white p-6 rounded-xl shadow-lg w-full max-w-lg">
+        <div className="flex flex-col items-center mb-8">
+          <img src="/flogos/logo.jpg" alt="Seam" className="h-14 mb-4" />
+          <h2 className="text-2xl font-bold text-purple-700">Sign Up</h2>
+        </div>
+        <p className="text-center text-gray-600 mb-6">
+          Enter your credentials to continue
+        </p>
+
+        <form onSubmit={handleSubmit}>
+          <div className="mb-5">
+            <input
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}
+              placeholder="Username"
+              className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 shadow-sm"
+            />
+          </div>
+          <div className="mb-5">
             <input
               type="email"
               name="email"
-              id="email"
               value={formData.email}
               onChange={handleChange}
-              className="block w-full px-3 py-2 mt-1 text-gray-900 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              placeholder="Enter your email"
-              required
+              placeholder="Email"
+              className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 shadow-sm"
             />
           </div>
-          <div>
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              Password
-            </label>
+          <div className="mb-5 relative">
             <input
-              type="password"
+              type={passwordVisible ? "text" : "password"}
               name="password"
-              id="password"
               value={formData.password}
               onChange={handleChange}
-              className="block w-full px-3 py-2 mt-1 text-gray-900 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              placeholder="Enter your password"
-              required
+              placeholder="Password"
+              className="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 shadow-sm"
             />
+            <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              className="absolute right-3 top-3 text-gray-600 hover:text-gray-800"
+            >
+              {passwordVisible ? "🙈" : "👁"}
+            </button>
           </div>
-          <div>
-            <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
-              Confirm Password
-            </label>
+          <div className="mb-5">
             <input
-              type="password"
-              name="confirmPassword"
-              id="confirmPassword"
-              value={formData.confirmPassword}
+              type="text"
+              name="admission_no"
+              id="admission_no"
+              value={formData.admission_no}
               onChange={handleChange}
-              className="block w-full px-3 py-2 mt-1 text-gray-900 placeholder-gray-400 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-              placeholder="Confirm your password"
+              className="w-full px-4 py-3 text-gray-900 placeholder-gray-500 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 shadow-sm"
+              placeholder="Enter your admission number"
               required
             />
           </div>
+          <div className="mb-5">
+            <input
+              type="text"
+              name="roll_no"
+              id="roll_no"
+              value={formData.roll_no}
+              onChange={handleChange}
+              className="w-full px-4 py-3 text-gray-900 placeholder-gray-500 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 shadow-sm"
+              placeholder="Enter your roll number"
+              required
+            />
+          </div>
+          <div className="mb-5">
+            <select
+              name="branch"
+              id="branch"
+              value={formData.branch}
+              onChange={handleChange}
+              className="w-full px-4 py-3 text-gray-900 placeholder-gray-500 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 shadow-sm"
+              required
+            >
+              <option value="" disabled>
+                Select your branch
+              </option>
+              <option value="CSE">Computer Science Engineering</option>
+              <option value="ECE">
+                Electronics and Communication Engineering
+              </option>
+              <option value="ME">Mechanical Engineering</option>
+              <option value="CE">Civil Engineering</option>
+            </select>
+          </div>
+          <div className="mb-5">
+            <select
+              name="semester"
+              id="semester"
+              value={formData.semester}
+              onChange={handleChange}
+              className="w-full px-4 py-3 text-gray-900 placeholder-gray-500 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 shadow-sm"
+              required
+            >
+              <option value="" disabled>
+                Select your semester
+              </option>
+              <option value="1">1st Semester</option>
+              <option value="2">2nd Semester</option>
+              <option value="3">3rd Semester</option>
+              <option value="4">4th Semester</option>
+              <option value="5">5th Semester</option>
+              <option value="6">6th Semester</option>
+              <option value="7">7th Semester</option>
+              <option value="8">8th Semester</option>
+            </select>
+          </div>
+
+          <div className="flex items-center mb-6">
+            <input
+              type="checkbox"
+              className="h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded"
+            />
+            <label className="ml-2 text-gray-700 text-sm">
+              Agree with{" "}
+              <a href="#" className="text-purple-600 underline">
+                Terms
+              </a>
+              .
+            </label>
+          </div>
+
           <button
             type="submit"
-            className="flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+            className="w-full bg-purple-600 text-white py-3 rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 shadow-lg"
           >
-            Register
+            Sign Up
           </button>
         </form>
-        <p className="text-sm text-center text-gray-600">
-          Already have an account?{' '}
-          <a href="/login" className="font-medium text-blue-600 hover:text-blue-500">
-            Sign in
+
+        <div className="text-center mt-6">
+          <a
+            href="/"
+            className="text-gray-600 underline text-sm hover:text-gray-800"
+          >
+            Login
           </a>
-        </p>
+        </div>
       </div>
     </div>
   );
 };
 
-export default Register;
+export default SignupForm;

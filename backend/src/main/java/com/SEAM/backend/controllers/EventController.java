@@ -28,6 +28,7 @@ public class EventController {
 
     @PostMapping("/register")
     public ResponseEntity<Boolean> Register(@RequestBody Map<String,String> map){
+        System.out.println("map"+map);
         return new ResponseEntity<Boolean>(service.register(map), HttpStatus.OK);
     }
 

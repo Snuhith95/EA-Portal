@@ -10,6 +10,7 @@ const EventForm = () => {
   const [eventLocation, setEventLocation] = useState("");
   const [clubName, setClubName] = useState("");
   const [eventPresentees, seteventPresentees] = useState([]);
+  const [registered, setRegistered] = useState([]);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
@@ -44,10 +45,11 @@ const EventForm = () => {
       eventLocation,
       clubName,
       eventPresentees,
+      registered,
     };
 
     try {
-      const response = await fetch("http://localhost:8080/create", {
+      const response = await fetch("http://localhost:8080/events/create", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

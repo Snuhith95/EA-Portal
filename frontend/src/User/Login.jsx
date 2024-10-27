@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import seam from "/flogos/logo.jpg";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -27,7 +28,7 @@ const Login = () => {
       if (data.startsWith("Yes")) {
         const admissionNo = data.split(" ")[1];
         localStorage.setItem("admissionNo", admissionNo);
-        alert("Login successful!");
+        navigate("/user/home");
         // Redirect or perform additional actions here
       } else if (data === "Authfailure") {
         alert("Wrong credentials. Please try again.");
@@ -118,7 +119,10 @@ const Login = () => {
             Sign IN
           </button>
           <div className="flex justify-between items-center mt-4 text-sm">
-            <a href="/register" className="text-purple-600 hover:underline">
+            <a
+              href="/user/register"
+              className="text-purple-600 hover:underline"
+            >
               Create Account
             </a>
             <a href="#" className="text-gray-500 hover:underline">
